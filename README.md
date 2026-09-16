@@ -79,19 +79,3 @@ The example uses the vacancy-aware DefectGNN and atom-level regression. The base
 data container converts each pristine graph into vacancy-centred training
 samples using the atom indices supplied in the target dictionary.
 
-## Reproducibility notes
-
-- Set `data.random_seed` to reproduce the random split.
-- Keep the graph CSV and target list in the same sample order.
-- Do not commit input data, checkpoints, or outputs; these are ignored by Git.
-- Before public release, add an explicit software license and archive a tagged
-  version in a DOI-minting repository such as Zenodo.
-
-## Code availability statement template
-
-The code used to train the DefectGNN models is available at **[repository URL]** and
-is archived at **[DOI or other persistent identifier]**. The archived release
-contains the model implementation, training pipeline, an example configuration,
-and documentation of the expected input format. The data used in the paper are
-available as described in the separate Data Availability statement.
-
