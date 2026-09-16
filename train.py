@@ -7,7 +7,7 @@ from defectgnn.utils.common_util import CommonArgs, setup_imports
 def main():
     setup_imports()
     cli = CommonArgs()
-    cli.parser.set_defaults(config="configs/train.yaml")
+    cli.parser.set_defaults(config="train.yaml")
     parsed = cli.parser.parse_args()
     args = cli.get_args(parsed.config)
     task = registers.task.get_class(args.names.task_name)(args)

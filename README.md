@@ -1,8 +1,7 @@
 ﻿# DefectGNN training code
 
 This repository contains the DefectGNN model implementation and the code required
-to train the regression models reported in the accompanying paper. Raw and
-processed datasets are not included.
+to train the regression models reported in the accompanying paper.
 
 ## Repository layout
 
@@ -10,23 +9,19 @@ processed datasets are not included.
 - `defectgnn/trainers/`: regression and GradNorm training logic.
 - `defectgnn/tasks/`: training loop, validation, checkpointing, and prediction export.
 - `defectgnn/data/`: data containers and TensorFlow input pipeline.
-- `configs/train.yaml`: example configuration for vacancy-aware atom-level training.
+- `train.yaml`: training configuration.
 - `train.py`: command-line training entry point.
 
 ## Installation
 
 ```bash
 python -m venv .venv
-python -m pip install -r requirements.txt
+pip install -r requirements.txt
 ```
-
-The code uses TensorFlow and TensorFlow Addons. For reproducible archival use,
-record the exact package versions and CUDA/cuDNN versions from the environment
-used for the paper before publishing a release.
 
 ## Input data
 
-Training uses two inputs configured under `paths` in `configs/train.yaml`:
+Training uses two inputs configured under `paths` in `train.yaml`:
 
 1. `graph_data_file_df`: a CSV file whose first column is an index and whose
    remaining value column contains one path per row to a pickled graph
@@ -45,7 +40,7 @@ the model are:
   mapping triplets to directed edges;
 - `id_swap`: the reverse-edge index for each directed edge.
 
-Each target dictionary has the following structure. The example configuration
+Each target dictionary has the following structure. The current configuration
 uses the `atom` entries; `path` entries are only required when path-level
 prediction is enabled:
 
@@ -65,17 +60,13 @@ safe interchange format for untrusted data.
 
 ## Training
 
-Edit the three paths at the top of `configs/train.yaml`, then run from the
+Edit the three paths at the top of `train.yaml`, then run from the
 repository root:
 
 ```bash
-python train.py --config configs/train.yaml
+python train.py --config train.yaml
 ```
 
 The task loads graph/target pairs, constructs samples, creates the configured
 train/validation/test split, trains the selected DefectGNN model, and writes logs,
 split indices, checkpoints, metrics, and predictions below `paths.output_path`.
-The example uses the vacancy-aware DefectGNN and atom-level regression. The base
-data container converts each pristine graph into vacancy-centred training
-samples using the atom indices supplied in the target dictionary.
-

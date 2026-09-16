@@ -17,7 +17,7 @@ class CommonArgs():
         self.parser.add_argument(
             '--config',
             type=str,
-            default='configs/train.yaml',
+            default='train.yaml',
             help='Path to YAML configuration file'
         )
 
