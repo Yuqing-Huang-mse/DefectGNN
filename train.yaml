@@ -1,6 +1,6 @@
-﻿paths:
-    graph_data_file_df: data/graph_files.csv
-    targets_data_file: data/targets.pkl
+paths:
+    graph_data_file_df: path/to/graph_files.csv
+    targets_data_file: path/to/targets.pkl
     output_path: outputs
 names:
     trainer_name: "gradnorm_trainer"
@@ -19,7 +19,7 @@ data:
     cutoff: 4
     task_type: "regression"
     use_sigmoid: false
-    target_types: ["atom"]
+    target_types: ["atom"] # ["atom", "path"]
     target_col: "targets"
     target_name: "defectgnn_vacancy_aware_atom"
     num_targets: 1
@@ -73,4 +73,3 @@ misc:
     ckpt_max_to_keep: 3
     ckpt_path: null
     comment: ''
-
