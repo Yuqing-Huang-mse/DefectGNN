@@ -13,13 +13,14 @@ data:
     atom_feature_scheme: "specie_onehot"
     random_seed: 20250618
     shuffle: true
-    train: "0.8"
-    validation: "0.1"
-    test: "0.1"
+    # Use split ratios or paths to graph-level .npy index files.
+    train: "0.8" # Optional: path/to/train_indices.npy
+    validation: "0.1" # Optional: path/to/validation_indices.npy
+    test: "0.1" # Optional: path/to/test_indices.npy
     cutoff: 4
     task_type: "regression"
     use_sigmoid: false
-    target_types: ["atom"] # ["atom", "path"]
+    target_types: ["atom"] # Optional multi-task setting: ["atom", "path"]
     target_col: "targets"
     target_name: "defectgnn_vacancy_aware_atom"
     num_targets: 1
@@ -48,7 +49,7 @@ model:
     embedding_dropout: 0.3
     output_dropout: 0.3
     kernel_initializer: "GlorotOrthogonal"
-    integrate_gate_mechanism: null
+    integrate_gate_mechanism: null # Optional: "residual_gate"
 training:
     batch_size: 8
     num_steps: 3000000
